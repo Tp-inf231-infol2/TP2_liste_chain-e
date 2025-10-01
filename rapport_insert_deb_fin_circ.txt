@@ -1,0 +1,116 @@
+Dossier algorithmique : 
+
+Insertion en tête et en queue dans une liste simplement chaîne 
+circulaire. 
+
+• Problème :  Insérer un élément en tête et en queue dans une liste simplement 
+chaîné circulaire. 
+
+• Principe :  
+
+-insertion en tête : 
+
+   Créer un nouveau nœud , si la liste est vide, le nouveau nœud créé devient la tête 
+de la tête de la liste et il pointe sur lui-même. Si la liste n’est pas vide, On fait 
+pointer le nœud à insérer (nouvelle tête) sur le deuxième nœud de l’ancienne liste 
+et on fait pointer le dernier nœud de la liste sur la nouvelle tête qui est le nœud 
+qu’on a insérer. 
+
+-insertion en fin : 
+
+Créer un nouveau nœud , si la liste est vide, le nouveau nœud créé devient la tête 
+de la tête de la liste et il pointe sur lui-même. Si la liste n’est pas vide, On fait 
+pointer le nœud à insérer (nouvelle queue) sur la tête  et on fait pointer le  dernier 
+nœud de la liste initiale sur le nœud qu’on a insérer. 
+
+• Dictionnaire de données : 
+
+Variables        Types        Définition  
+Nouveau          list*     Nouveau nœud à insérer  
+head             list*.     Tête de liste  
+val              int      Valeur du nœud à insérer  
+a                int       Élément de la liste 
+last             list*    Dernier nœud de la liste 
+temp             list*    Pointeur pour parcourir 
+
+
+• Algorithmique : 
+
+-pseudocode : 
+
+STRUCTURE list 
+    entier val 
+    pointeur vers list next 
+FIN STRUCTURE 
+FONCTION creer_nouveau(valeur : entier) : pointeur vers list 
+    allouer mémoire pour nouveau 
+    SI allocation échoue ALORS 
+        afficher "Erreur d'allocation" 
+        arrêter programme 
+    FIN SI 
+    nouveau.val <- valeur 
+    nouveau.next <- NULL 
+    retourner nouveau 
+FIN FONCTION 
+PROCÉDURE inserer_debut(REF head : pointeur vers list, valeur : entier) 
+    nouveau <- creer_nouveau(valeur) 
+    SI head = NULL ALORS 
+        nouveau.next <- nouveau 
+        head <- nouveau 
+        RETOUR 
+    FIN SI 
+    last <- head 
+    TANT QUE last.next ≠ head FAIRE 
+        last <- last.next 
+    FIN TANT QUE 
+    nouveau.next <- head 
+    last.next <- nouveau 
+    head <- nouveau 
+FIN PROCÉDURE 
+PROCÉDURE inserer_fin(REF head : pointeur vers list, valeur : entier) 
+    nouveau <- creer_nouveau(valeur) 
+    SI head = NULL ALORS 
+        nouveau.next <- nouveau 
+        head <- nouveau 
+        RETOUR 
+    FIN SI 
+    temp <- head 
+TANT QUE temp.next ≠ head FAIRE 
+        temp <- temp.next 
+    FIN TANT QUE 
+    nouveau.next <- temp.next 
+    temp.next <- nouveau 
+    nouveau.next <- head 
+FIN PROCÉDURE 
+PROCÉDURE affiche(head : pointeur vers list) 
+    temp <- head 
+    FAIRE 
+        afficher temp.val suivi de " -> " 
+        temp <- temp.next 
+    TANT QUE temp ≠ head 
+    afficher head.val 
+FIN PROCÉDURE 
+PROCÉDURE PRINCIPALE 
+    déclarer i, a, n, valeur : entier 
+    head <- NULL 
+    afficher "Quelle est le nombre d'éléments de la liste initiale : " 
+    lire n 
+    afficher "Entrer les n éléments : " 
+    POUR i ← 0 JUSQU’À n-1 FAIRE 
+        lire a 
+        inserer_fin(head, a) 
+    FIN POUR 
+    afficher "Entrer l'élément que vous voulez insérer au début de la liste : " 
+    lire a 
+    inserer_debut(head, a) 
+    affiche(head) 
+    afficher "Entrer l'élément que vous voulez insérer à la fin de la liste : " 
+    lire a 
+    inserer_fin(head, a) 
+    affiche(head)
+FIN PROCEDURE
+FIN
+
+Complexité:
+Temps=n²
+Espace=n²
