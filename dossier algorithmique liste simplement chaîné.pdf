@@ -1,0 +1,109 @@
+      DOSSIER ALGORITHMIQUE :
+
+insertion d’un élément dans une liste simplement chaînée triée.
+
+    *Problème : insertion d’un nouvel élément dans une liste simplement chaînée triée, tout enconservant la liste triée.
+
+
+    *Principe : parcourir les éléments insérés de la liste triée de tel sorte qu’en insérantl’élément à insérer la liste reste toujours triée( L'utilisateur entre les valeurs, et chaquenouvelle valeur entrée est placée directement à sa position correcte dans la liste) .
+
+
+   *Dictionnaire de données
+
+Nom de variables Types Descriptions
+Donnee: Entier ( int) Contient la valeur stockédans un nœud.
+
+n : Entier (int) Nombre d'élément remplispar l’utilisateur.
+
+Val : Entier (int) Valeur à insérer dans la liste.
+
+Suiv: Noeud* Pointeur vers le nœud
+suivant de la liste.
+
+Nouveau: Noeud* Pointeur vers le nouveau
+noeud à insérer.
+
+Temp: Noeud* Pointeur utiliser pour
+parcourir la liste Lors del’affichage.
+
+Courant: Noeud* Pointeur utiliser pour
+parcourir la liste pendantl’insertion.
+
+
+  *Algorithme : Pseudo code
+
+
+
+Algorithme : insertion
+Début
+Var
+n,val: entier ;
+
+Écrire (“Créer une liste vide:”);
+Lire ( n);
+
+Fonction InsererTrie(liste, val) :
+
+écrire ("Créer un nouveau noeud: )
+
+nouveau.donnee ← val
+nouveau.suiv ← NULL
+
+Si (liste est vide) OU (val < liste.donnee) alors
+
+nouveau.suiv ← liste
+retourner nouveau
+
+Fin Si
+
+courant ← liste
+
+Tant que (courant.suiv ≠ NULL &    courant.suiv.donnee < val) faire:
+courant ← courant.suiv
+
+Fin Tant que
+
+nouveau.suiv ← courant.suiv
+courant.suiv ← nouveau
+
+retourner liste
+
+Fin Fonction
+
+Procédure AfficherListe(liste) :
+temp ← liste
+Tant que temp ≠ NULL faire
+
+  Afficher temp.donnee suivi de " -> "
+  temp ← temp.suiv
+
+Fin Tant que
+
+Afficher "NULL"
+
+Fin Procédure
+
+liste ← vide
+écrire ("Entrer le nombre d’éléments de la liste :")
+Lire n;
+
+Pour i de 1 à n faire:
+"Entrer la valeur ", i
+  Lire val
+ liste ← InsererTrie(liste, val)
+
+Fin Pour
+
+Afficher "Entrer un élément à insérer :"
+Lire val
+liste ← InsererTrie(liste, val)
+
+Afficher "Liste triée après insertion :"
+Appeler AfficherListe(liste)
+Fin
+
+
+*Complexité
+
+-espace : n+2
+-Temp : n
