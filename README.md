@@ -44,7 +44,7 @@ Contenu du dépôt
 
 *.c : fichiers source en langage C.
 
-dossier_algorithmique/ : algorithmes et traces d’exécution.
+dossier_algorithmique/ : algorithmes .
 
 README.md : document de présentation du projet.
 
